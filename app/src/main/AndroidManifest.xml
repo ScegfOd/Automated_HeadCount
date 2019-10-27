@@ -18,11 +18,7 @@
 
 
 
-<<<<<<< HEAD
         <activity android:name=".initialSetUp">
-=======
-        <activity android:name=".CaptureRoom">
->>>>>>> 6303bba... holy moly
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
