@@ -27,9 +27,13 @@ public class CaptureRoom extends Activity {
             //System.getenv("FACE_ENDPOINT");
     // Add your Face subscription key to your environment variables.
     private final String subscriptionKey = "995d9be520c04d54b05dc76971a18058";
+<<<<<<< HEAD
 
     private final String personGroupID = "group1";
     private final String mediaType = "jpg";
+=======
+            //System.getenv("FACE_SUBSCRIPTION_KEY");ttps://l.facebook.com/l.php?u=
+>>>>>>> 6303bba... holy moly
 
     private final FaceServiceClient faceServiceClient = new FaceServiceRestClient(apiEndpoint, subscriptionKey);
 
@@ -79,8 +83,11 @@ public class CaptureRoom extends Activity {
             // Permission has already been granted
         }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 6303bba... holy moly
     }
 
     @Override
@@ -144,8 +151,11 @@ public class CaptureRoom extends Activity {
                     protected Face[] doInBackground(InputStream... params) {
                         try {
                             publishProgress("Detecting...");
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 6303bba... holy moly
                             Face[] result = faceServiceClient.detect(
                                     params[0],
                                     true,         // returnFaceId
@@ -156,6 +166,7 @@ public class CaptureRoom extends Activity {
                                     FaceServiceClient.FaceAttributeType.Gender }
                                 */
                             );
+<<<<<<< HEAD
                             //initialize the group...
                             try{
                                 //if(faceServiceClient.getPersonGroup(personGroupID) == null)
@@ -174,6 +185,8 @@ public class CaptureRoom extends Activity {
                                 //TODO
                                 Log.d("async",e.getMessage(),e);
                             }
+=======
+>>>>>>> 6303bba... holy moly
                             if (result == null){
                                 publishProgress(
                                         "Detection Finished. Nothing detected");
