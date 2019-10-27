@@ -27,7 +27,9 @@ public class CaptureRoom extends Activity {
             //System.getenv("FACE_ENDPOINT");
     // Add your Face subscription key to your environment variables.
     private final String subscriptionKey = "995d9be520c04d54b05dc76971a18058";
-            //System.getenv("FACE_SUBSCRIPTION_KEY");ttps://l.facebook.com/l.php?u=
+
+    private final String personGroupID = "haxFSJChax";
+    private final String mediaType = "jpg";
 
     private final FaceServiceClient faceServiceClient = new FaceServiceRestClient(apiEndpoint, subscriptionKey);
 
@@ -76,6 +78,18 @@ public class CaptureRoom extends Activity {
         } else {
             // Permission has already been granted
         }
+
+        //initialize the group...
+        try{
+            faceServiceClient.createPersonGroup(personGroupID, mediaType, subscriptionKey);
+        }catch(java.io.IOException e){
+            //TODO
+        }catch(com.microsoft.projectoxford.face.rest.ClientException e){
+            //TODO
+        }
+        //faceServiceClient.createPersonGroup("fuck","fuck","fuck");
+        //faceServiceClient.ident
+
 
     }
 
