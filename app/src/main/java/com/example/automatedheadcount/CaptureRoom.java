@@ -28,7 +28,7 @@ public class CaptureRoom extends Activity {
     // Add your Face subscription key to your environment variables.
     private final String subscriptionKey = "995d9be520c04d54b05dc76971a18058";
 
-    private final String personGroupID = "haxFSJChax";
+    private final String personGroupID = "group1";
     private final String mediaType = "jpg";
 
     private final FaceServiceClient faceServiceClient = new FaceServiceRestClient(apiEndpoint, subscriptionKey);
@@ -79,16 +79,6 @@ public class CaptureRoom extends Activity {
             // Permission has already been granted
         }
 
-        //initialize the group...
-        try{
-            faceServiceClient.createPersonGroup(personGroupID, mediaType, subscriptionKey);
-        }catch(java.io.IOException e){
-            //TODO
-        }catch(com.microsoft.projectoxford.face.rest.ClientException e){
-            //TODO
-        }
-        //faceServiceClient.createPersonGroup("fuck","fuck","fuck");
-        //faceServiceClient.ident
 
 
     }
@@ -154,6 +144,8 @@ public class CaptureRoom extends Activity {
                     protected Face[] doInBackground(InputStream... params) {
                         try {
                             publishProgress("Detecting...");
+
+
                             Face[] result = faceServiceClient.detect(
                                     params[0],
                                     true,         // returnFaceId
@@ -164,6 +156,24 @@ public class CaptureRoom extends Activity {
                                     FaceServiceClient.FaceAttributeType.Gender }
                                 */
                             );
+                            //initialize the group...
+                            try{
+                                //if(faceServiceClient.getPersonGroup(personGroupID) == null)
+                                    faceServiceClient.createPersonGroup(personGroupID, "GROUP NAME", "recognition_02");
+
+                                CreatePersonResult success = faceServiceClient.createPerson(personGroupID, "Zendaya", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.brstatic.com%2F2017%2F07%2F20163128%2Fzendaya-networth.jpg&f=1&nofb=1");
+                                //PersonGroup our_group = faceServiceClient.getPersonGroup(personGroupID);
+
+                                System.out.println(success.personId);
+
+                                faceServiceClient.addPersonFace(personGroupID, result[0].faceId, params[0], "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.brstatic.com%2F2017%2F07%2F20163128%2Fzendaya-networth.jpg&f=1&nofb=1", result[0].faceRectangle);
+                            }catch(java.io.IOException e){
+                                //TODO
+                                Log.d("async",e.getMessage(),e);
+                            }catch(com.microsoft.projectoxford.face.rest.ClientException e){
+                                //TODO
+                                Log.d("async",e.getMessage(),e);
+                            }
                             if (result == null){
                                 publishProgress(
                                         "Detection Finished. Nothing detected");
